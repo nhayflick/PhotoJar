@@ -1,0 +1,4 @@
+<% jars.each (function(jar) { %>
+  <li>  <a href="/#/jars/<%= jar.escape('id') %>"> <%= jar.escape("title") %>  </a>
+  </li>
+<% }); %>
