@@ -19,12 +19,12 @@ PJ.Views.ShowPhotosView = Backbone.View.extend({
 
   updateTiles: function() {
     var that = this;
-    $('#photocontent').children().empty(); 
+    // $('#photocontent').children().empty(); 
     that.collection.each( function(photo) {
       var targetDivID = photo.get('div_id');
       var photoURL = photo.get('filepicker_url');
-      $('[data-id="' + targetDivID + '"]').append('<img src="' + photoURL + '"/>');
+      $('[data-id="' + targetDivID + '"]').append('<img src="' + photoURL + '/convert?w=430&h=321&fit=crop"/>');
     });
-  }, 
+  },
 
 });

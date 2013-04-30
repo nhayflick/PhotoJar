@@ -1,34 +1,46 @@
-<div class="row-fluid">
+<div class="container">
   <div class='span12'>
-    <div class="row-fluid">
-      <div class='span2 palette-silver well' style='align: center;'id="sidebar"></div>
-      <div class='span8 offset1 palette-clouds'>
-        <div class='span12' id="content" ></div>
-        <ul class="row-fluid" id="photocontent" >
-<!--           <div class="span4 well"> -->
-          <li class="span4 well"  data-id="0"></li>
+    <div class="row">
+      <div class='span3 palette-silver well' style='align: center;'id="sidebar"></div>
+      <div class='span8 offset1 palette-night-dark well'>
+        <div class='span8' id="content" ></div>
+        <div class ='row' style='overflow: hidden;'>
+        <ul  style='list-style:none;' class="media-grid" id="photocontent" >
+<!--           <div class="span4 tile"> -->
+          <li class="span3 my-well"  id="photocontent" style='overflow: hidden;'> <div class='photo-tile' data-id="0"></div></li>
 <!--           </div>
- -->      <li class="span4 well" data-id="1"></li>
+ -->      <li class="span3 my-well" id="photocontent" style='overflow: hidden;'> <div class='photo-tile' data-id="1"></div></li>
 <!--           </div>
- -->      <li class="span4 well" data-id="2"></li>
+ -->      <li class="span3 my-well" style='overflow: hidden;' id="photocontent"> <div class='photo-tile' data-id="2"></div></li>
+          <li class="span3 my-well-2" id="photocontent" style="margin-top:-8px;"> <div class='photo-tile' data-id="3"
+          </div></li>
+                  <div class='row'>
+        <div class='span8'></div>
+      </div>
+                        <div class='row'>
+        <div class='span8'><br><br></div>
+      </div>
         </ul>
       </div>
-      <div class='span1'></div>
+      </div>
     </div>
   </div>
 </div>
-
+<link rel="stylesheet" type="text/css" 
+href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
 <script>
 
   $(function(){
 
-  
 
     filepicker.setKey('AE7UBn35SviLp7DDkDDAxz');
     var $sidebar = $("#sidebar");
     var $content = $("#content");
     var current_user = <%= current_user.to_json.html_safe %>;
     var current_user_jars = <%= @user_jars.to_json.html_safe %>;
+
+    $("li#photocontent").resizable({
+      grid: 220, handles: "e", minHeight: 200, minWidth: 200, maxWidth: 440});
 
     window.PJ.initialize(
       $sidebar,

@@ -13,6 +13,7 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
     this.collection.on('remove', renderCallback);
     this.collection.on('save', parse);
 
+
     $( "#photocontent" ).sortable();
     $( "#photocontent" ).disableSelection();
   },
@@ -28,8 +29,8 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
   // },
 
   updateTiles: function() {
+
     var that = this;
-    $('#photocontent').children().empty(); 
     that.collection.each( function(photo) {
       var targetDivID = photo.get('div_id');
       var photoURL = photo.get('filepicker_url');
