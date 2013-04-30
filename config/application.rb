@@ -58,5 +58,8 @@ module PhotoJar
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.filepicker_rails.api_key = "AE7UBn35SviLp7DDkDDAxz"
+
   end
 end

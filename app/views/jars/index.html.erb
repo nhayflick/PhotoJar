@@ -1,0 +1,42 @@
+<div class="row-fluid">
+  <div class='span12'>
+    <div class="row-fluid">
+      <div class='span2 palette-silver well' style='align: center;'id="sidebar"></div>
+      <div class='span8 offset1 palette-clouds'>
+        <div class='span12' id="content" ></div>
+        <ul class="row-fluid" id="photocontent" >
+<!--           <div class="span4 well"> -->
+          <li class="span4 well"  data-id="0"></li>
+<!--           </div>
+ -->      <li class="span4 well" data-id="1"></li>
+<!--           </div>
+ -->      <li class="span4 well" data-id="2"></li>
+        </ul>
+      </div>
+      <div class='span1'></div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+  $(function(){
+
+  
+
+    filepicker.setKey('AE7UBn35SviLp7DDkDDAxz');
+    var $sidebar = $("#sidebar");
+    var $content = $("#content");
+    var current_user = <%= current_user.to_json.html_safe %>;
+    var current_user_jars = <%= @user_jars.to_json.html_safe %>;
+
+    window.PJ.initialize(
+      $sidebar,
+      $content,
+      current_user,
+      current_user_jars
+
+    )
+  });
+
+</script>

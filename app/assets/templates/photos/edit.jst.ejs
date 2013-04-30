@@ -1,0 +1,5 @@
+<% photos.each (function(photo) {%>
+  <img src='<%= photo.escape("filepicker_url") %>' >
+  <button class='delete' data-id='<%= photo.cid %>' > Remove </button>
+  <br>
+<% }); %>
