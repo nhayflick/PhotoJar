@@ -7,8 +7,14 @@ PJ.Views.ShowJarView = Backbone.View.extend({
     });
     that.$el.html(renderedContent);
     return that;
+  },
+
+  // disableResize: function() {
+  //   $("li#photocontent").resizable("destroy");
+  // },
+
+  clearTiles: function() {
+    $('li#photocontent').children().empty(); 
   }
-
-
 
 })

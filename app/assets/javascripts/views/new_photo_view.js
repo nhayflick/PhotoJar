@@ -35,11 +35,9 @@ PJ.Views.NewPhotoView = Backbone.View.extend({
     var that = this;
     for(i=0; i < 3; i++) {
       if(!_.contains(that.collection.pluck('div_id'), i)){
-        console.log(i)
         return i
       }
     }
-    console.log('0')
     return 0
   },
 

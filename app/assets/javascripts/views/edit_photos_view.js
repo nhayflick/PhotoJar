@@ -13,7 +13,6 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
     this.collection.on('remove', renderCallback);
     this.collection.on('save', parse);
 
-
     $( "#photocontent" ).sortable();
     $( "#photocontent" ).disableSelection();
   },
@@ -34,7 +33,7 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
     that.collection.each( function(photo) {
       var targetDivID = photo.get('div_id');
       var photoURL = photo.get('filepicker_url');
-      $('[data-id="' + targetDivID + '"]').append('<img src="' + photoURL + '"/>');
+      $('[data-id="' + targetDivID + '"]').append('<img src="' + photoURL + '/convert?w=430&h=321&fit=crop"/>');
     });
   },
 
@@ -57,6 +56,16 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
         that.collection.at(parseInt(pos)).set({div_id: (index - 1)});
       }
     });
+  },
+
+  enableResize: function() {
+    $("li#photocontent").resizable({
+      grid: 220, handles: "e", minHeight: 200, minWidth: 200, maxWidth: 440
+    });
+  },
+
+  clearTiles: function() {
+    $('li#photocontent').children().empty(); 
   }
 
 });

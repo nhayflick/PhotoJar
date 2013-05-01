@@ -132,3 +132,74 @@
   .tile p {
     font-size: 15px;
     margin-bottom: 33px; }
+
+  .tile-small {
+    width:220;    
+  }
+
+  .tile-stretched {
+    width:440;
+  }
+
+  [class*="tilespan"] {
+  float: left;
+  min-height: 1px;
+  margin-left: 20px;
+}
+
+.container,
+.navbar-static-top .container,
+.navbar-fixed-top .container,
+.navbar-fixed-bottom .container {
+  width: 940px;
+}
+
+.tilespan12 {
+  width: 940px;
+}
+
+.span11 {
+  width: 860px;
+}
+
+.span10 {
+  width: 780px;
+}
+
+.span9 {
+  width: 700px;
+}
+
+.span8 {
+  width: 620px;
+}
+
+.span7 {
+  width: 540px;
+}
+
+.tilespan6 {
+  width: 440px;
+  height: 167px;
+}
+
+.span5 {
+  width: 380px;
+}
+
+.span4 {
+  width: 300px;
+}
+
+.tilespan3 {
+  width: 220px;
+  height: 167px;
+}
+
+.span2 {
+  width: 140px;
+}
+
+.span1 {
+  width: 60px;
+}

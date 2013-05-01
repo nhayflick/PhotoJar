@@ -19,12 +19,22 @@ PJ.Views.ShowPhotosView = Backbone.View.extend({
 
   updateTiles: function() {
     var that = this;
-    // $('#photocontent').children().empty(); 
+    that.clearTiles();
     that.collection.each( function(photo) {
       var targetDivID = photo.get('div_id');
       var photoURL = photo.get('filepicker_url');
-      $('[data-id="' + targetDivID + '"]').append('<img src="' + photoURL + '/convert?w=430&h=321&fit=crop"/>');
+      $tile = $('[data-id="' + targetDivID + '"]')
+      $tile.append('<img src="' + photoURL + '/convert?w=430&h=321&fit=crop"/>');
+      if(photo.get('div_class')) {
+        console.log(photo.get('div_class'))
+        $tile.parent().removeClass('tilespan3 tilespan6');
+        $tile.parent().addClass(photo.get('div_class'));
+        console.log($tile.parent())
+      }
     });
   },
 
+  clearTiles: function() {
+    $('li#photocontent').children().empty(); 
+  }
 });

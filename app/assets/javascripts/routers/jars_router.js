@@ -16,6 +16,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     var showJarView = new PJ.Views.ShowJarView({
        model: model
     });
+    showJarView.clearTiles();
     model.get('photos').fetch({
       success: function() {
         console.log(model.get('photos'));
@@ -23,6 +24,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
           collection: model.get('photos')
         })
         that.$contentEl.html(showJarView.render().$el).append(showPhotosView.updateTiles());
+        // showJarView.disableResize();
       }
     });
   },
@@ -42,6 +44,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     })
     editPhotosView.render();
     that.$contentEl.html(newJarView.render().$el).append(newPhotoView.render().$el);
+    editPhotosView.enableResize();
+    editPhotosView.clearTiles();
   }
 
 });
