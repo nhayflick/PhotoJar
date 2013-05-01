@@ -8,24 +8,14 @@
     <div class="row">
       <div class='span3 palette-silver well' style='align: center;'id="sidebar"></div>
       <div class='span8 offset1 palette-night-dark well'>
-                <div class='span8'><br><br></div>
-
-        <div class ='row' style='overflow: hidden;'>
-        <ul  style='list-style:none; background-color:#FFFFFF; width:440px; margin:auto; ' class="media-grid" id="photocontent" bg >
-          <li class="tilespan3 my-well tile-small"  id="photocontent" style='overflow: hidden;'> <div class='photo-tile' data-id="0"></div></li>
-           <li class="tilespan3 my-well tile-small" id="photocontent" style='overflow: hidden;'> <div class='photo-tile' data-id="1"></div></li>
-           <li class="tilespan6 my-well tile-stretched" style='overflow: hidden;' id="photocontent"> <div class='photo-tile' data-id="2"></div></li>
-          <li class="span3 my-well-2" id="photocontent" style="margin-top:-9px;"> <div class='photo-tile' data-id="3">
-          </div></li>
-                        <div class='row'>
         <div class='span8'></div>
-      </div>
-        </ul>
-         <div class='span8' id="content"></div>
-                          <div class='row'>
-        <div class='span8'><br></div>
-      </div>
-      </div>
+          <div class='row' style='overflow: hidden;'>
+          <div id="photocontent"> </div>
+          <div class='span8' id="content"></div>
+          <div class='row'>
+          <div class='span8'><br></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -40,6 +30,7 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
     filepicker.setKey('AE7UBn35SviLp7DDkDDAxz');
     var $sidebar = $("#sidebar");
     var $content = $("#content");
+    var $photoContent = $("#photocontent")
     var $navbar = $(".navbar");
     var current_user = <%= current_user.to_json.html_safe %>;
     var current_user_jars = <%= @user_jars.to_json.html_safe %>;
@@ -47,6 +38,7 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
     window.PJ.initialize(
       $sidebar,
       $content,
+      $photoContent,
       $navbar,
       current_user,
       current_user_jars
@@ -55,17 +47,3 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
   });
 
 </script>
-
-    <footer>
-      <div class="container">
-        <div class="row">
-          <div class="span7">
-            <h3 class="footer-title">text</h3>
-            <p>HAFHJGASLJFGHALSKJFHLKJASHF
-            </p>
-
-          </div>
-
-        </div>
-      </div>
-    </footer>

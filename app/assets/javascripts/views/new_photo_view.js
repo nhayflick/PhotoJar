@@ -21,7 +21,8 @@ PJ.Views.NewPhotoView = Backbone.View.extend({
      var output = $("#ajax-upload-output")
       filepicker.store($('input[type="file"]')[0].files[0], {location: 'S3'}, function(fpfile){
           output.html('Uploaded: '+fpfile.filename+'');
-          var photo = new PJ.Models.Photo({filepicker_url: fpfile.url, div_id: that.findEmptyDiv()})
+          var photo = new PJ.Models.Photo({filepicker_url: fpfile.url, div_id: that.findEmptyDiv(), div_class: 
+            'tilespan3'})
           that.collection.add(photo);
       }, function(fperror){
           output.text(fperror.toString());

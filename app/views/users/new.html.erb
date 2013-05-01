@@ -1,0 +1,37 @@
+<!-- <h1 class='demo-headline'>Sign up</h1>
+
+ -->
+<div class="login-screen palette-night-dark">
+<div class="row-fluid">
+<div class="span1"></div>
+<div class="login-icon span1">
+  <img src="http://4.bp.blogspot.com/-G_0bY_5OjvI/Tk7mIUHME-I/AAAAAAAABtU/XYod3Weku1U/s1600/Mason+Jar+Printable.png" style="width:60; height:90;" alt="Sign up for PhotoJar" /><br>
+  <h4>Create a <small>PhotoJar</small> account.</h4>
+
+</div>
+
+
+  <div class="span8 login-form" style="text-align: center;">
+    <%= form_for(@user) do |f| %>
+      <p>
+
+      <%= f.label :user_name, "User Name" %>
+      <%= f.text_field :user_name %>
+
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+      </p>
+      <p>
+      <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
+    </p> <br><br> <p> Already a member? </p> <br>
+         <p><%= link_to "Log in to your PhotoJar account", new_session_path %></p>
+    <% end %>
+  </div>
+</div>
+</div>

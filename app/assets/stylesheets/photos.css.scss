@@ -2,18 +2,26 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.photocontent { list-style-type: none; 
+.photo-content { list-style-type: none; 
     margin: 0; 
     padding: 0; 
-    width: 1000px; 
+    width: 1000px;
 }
 
-.photocontent li { margin: 0px 0px 0px 0px; 
+.photo-content ul {
+  list-style:none;
+  background-color:#FFFFFF;
+  width:440px;
+  margin:auto; 
+}
+
+.photo-content li { margin: 0px 0px 0px 0px; 
     padding: 0px; 
     float: left;
     width: 200px; 
     height: 200px; 
-    font-size: 4em; 
+    font-size: 4em;
+    border-radius: 4px; 
 }
 
 .container-fluid {
@@ -116,7 +124,7 @@
 
 .photo-tile {
   background-color: #ffffff;
-  border-radius: 0px;
+  border-radius: 4px;
   padding: 5px;
   position: relative;
   text-align: center; }
@@ -134,11 +142,13 @@
     margin-bottom: 33px; }
 
   .tile-small {
-    width:220;    
+    width:220;  
+    border-radius: 4px;
   }
 
   .tile-stretched {
     width:440;
+    border-radius: 4px;
   }
 
   [class*="tilespan"] {
@@ -202,4 +212,8 @@
 
 .span1 {
   width: 60px;
+}
+
+.rounded-photo {
+  border-radius: 4px;
 }

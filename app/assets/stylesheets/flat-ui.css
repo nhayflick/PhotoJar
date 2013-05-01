@@ -2339,7 +2339,7 @@ body.vjs-full-window {
   position: relative; }
 
 .login-screen {
-  background-color: #1abc9c;
+  background-color: #FFFFFF;
   min-height: 317px;
   padding: 123px 199px 33px 306px; }
 
@@ -2364,7 +2364,7 @@ body.vjs-full-window {
       font-weight: 700; }
 
 .login-form {
-  background-color: #eceff1;
+  background-color: #34495e;
   border-radius: 6px;
   padding: 24px 23px 20px;
   position: relative; }
@@ -2372,7 +2372,7 @@ body.vjs-full-window {
     content: "";
     border-style: solid;
     border-width: 12px 12px 12px 0;
-    border-color: transparent #eceff1 transparent transparent;
+    border-color: transparent #34495e transparent transparent;
     height: 0px;
     position: absolute;
     left: -12px;
@@ -2388,7 +2388,7 @@ body.vjs-full-window {
     padding-bottom: 11px;
     padding-top: 11px;
     text-indent: 3px;
-    width: 299px; }
+    width: 399px; }
     .login-form .login-field:focus + .login-field-icon {
       color: #1abc9c; }
   .login-form .login-field-icon {

@@ -1,10 +1,12 @@
 PJ.Routers.JarsRouter = Backbone.Router.extend({
 
-  initialize: function(content) {
+  initialize: function(content, photoContent) {
     this.$contentEl = $(content)
+    this.$photoContentEl = $(photoContent)
   },
 
   routes: {
+    'jars/': 'index',
     'jars/new': 'new',
     'jars/:id': 'show' 
   },
@@ -23,7 +25,9 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         var showPhotosView = new PJ.Views.ShowPhotosView({
           collection: model.get('photos')
         })
-        that.$contentEl.html(showJarView.render().$el).append(showPhotosView.updateTiles());
+        that.$contentEl.html(showJarView.render().$el);
+        that.$photoContentEl.html(showPhotosView.render().$el);
+        showPhotosView.updateTiles();
         // showJarView.disableResize();
       }
     });
@@ -46,6 +50,29 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     that.$contentEl.html(newJarView.render().$el).append(newPhotoView.render().$el);
     editPhotosView.enableResize();
     editPhotosView.clearTiles();
+  },
+
+  index: function() {
+    var that = this;
+    console.log( PJ.Store.CurrentUserJars);
+    // showJarView.clearTiles();
+    that.$contentEl.empty();
+    PJ.Store.CurrentUserJars.each(function(jar) {
+      var showJarView = new PJ.Views.ShowJarView({
+         model: jar
+      });
+      jar.get('photos').fetch({
+      success: function() {
+        console.log(jar.get('photos'));
+        var showPhotosView = new PJ.Views.ShowPhotosView({
+          collection: jar.get('photos')
+        })
+        that.$photoContentEl.html(showPhotosView.render().$el);
+        showPhotosView.updateTiles();
+        // showJarView.disableResize();
+      }
+    });
+    })
   }
 
 });

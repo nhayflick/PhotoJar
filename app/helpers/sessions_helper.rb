@@ -1,12 +1,13 @@
 module SessionsHelper
 
   def current_user
-    return nil if session[:user_name].nil?
-    @user ||= User.find_by_user_name(session[:user_name])
+    return nil if cookies[:remember_token].nil?
+     @user ||= User.find_by_remember_token(cookies[:remember_token])
   end
 
   def log_in(user)
-    session[:user_name] = user.user_name
+    cookies.permanent[:remember_token] = user.remember_token
+    @user = user
   end
 
   def log_out
