@@ -42,6 +42,7 @@ gem 'jquery-rails'
 # To use debugger
  gem 'debugger'
 
+gem 'bcrypt-ruby'
 gem 'ejs'
 gem 'paperclip'
 gem 'filepicker-rails'
