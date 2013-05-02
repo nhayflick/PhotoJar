@@ -47,5 +47,4 @@ gem 'jquery-rails'
 
 gem 'bcrypt-ruby'
 gem 'ejs'
-gem 'paperclip'
 gem 'filepicker-rails'
