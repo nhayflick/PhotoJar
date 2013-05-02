@@ -5,7 +5,7 @@ class JarsController < ApplicationController
   include SessionsHelper
 
   def index
-    @user_jars = current_user.jars
+    @user_jars = Jar.all
     respond_to do |format|
       format.html {render :index}
       format.json {render :json => @user_jars}

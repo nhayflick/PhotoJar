@@ -1,7 +1,11 @@
-PJ.Views.EditPhotosView = Backbone.View.extend({
+PJ.Views.EditJarView = Backbone.View.extend({
 
   events: {
-    'click button.delete': 'delete'
+    'click .delete': 'delete',
+    'click .expand': 'expand',
+    'click .shrink': 'shrink',
+    'click .down': 'down',
+    'click .up': 'up'
   },
 
   initialize: function() {
@@ -17,6 +21,16 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
     $( "#photocontent" ).disableSelection();
   },
 
+  render: function() {
+    var that = this;
+    console.log("hereherehers");
+    var renderedContent = JST["jars/show"]({
+      jar: that.model
+    });
+    that.$el.html(renderedContent);
+    return that;
+  },
+
   // render: function() {
   //   var that = this;
   //   console.log(that.collection);
@@ -28,18 +42,32 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
   // },
 
   updateTiles: function() {
-
     var that = this;
-    that.collection.each( function(photo) {
+    that.clearTiles();
+    that.collection.each(function(photo) {
       var targetDivID = photo.get('div_id');
       var photoURL = photo.get('filepicker_url');
-      $('[data-id="' + targetDivID + '"]').append('<img src="' + photoURL + '/convert?w=430&h=321&fit=crop"/>');
+      if (photo.get('div_class') == "tilespan3") {
+           var height = 321;
+        } else {
+           var height = 157;
+        }
+      $tile = that.$('[data-id="' + targetDivID + '"]')
+      if(photo.get('div_class')) {
+        console.log(photo.get('div_class'))
+        $tile.parent().removeClass('tilespan0 tilespan3 tilespan6');
+        $tile.parent().addClass(photo.get('div_class'));
+        console.log($tile.parent());
+      }
+      $tile.append('<img src="' + photoURL + '/convert?w=430&h=' + height + '&fit=crop" class="rounded-photo"/>');
+      $tile.append('<div class="hidden-menu"><h4><a href="#" class="expand">Expand</a><a href="#" class="shrink">Shrink</a><a href="#" class="up">Up</a><a href="#" class="down">Down</a><a href="#" class="delete">Delete</a></h4></div>');
     });
   },
 
   delete: function(event) {
     var that = this;
-    toDelete = that.collection.get($(event.target).attr('data-id'));
+    var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
+    toDelete = that.collection.findWhere({div_id: parseInt(divNum)});
     // filepicker.remove
     that.collection.remove(toDelete);
 
@@ -66,6 +94,47 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
 
   clearTiles: function() {
     $('li#photocontent').children().empty(); 
+  },
+
+  expand: function(event) {
+    event.preventDefault();
+    var that = this;
+    var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
+    var picModel = that.collection.findWhere({div_id: parseInt(divNum)});
+    console.log(picModel);
+    picModel.set({div_class: 'tilespan6'});
+  },
+
+  shrink: function(event) {
+    event.preventDefault();
+    var that = this;
+    var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
+    var picModel = that.collection.findWhere({div_id: parseInt(divNum)});
+    console.log(picModel);
+    picModel.set({div_class: 'tilespan3'});
+  },
+
+  down: function(event) {
+    event.preventDefault();
+    var that = this;
+    var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
+    var picModel1 = that.collection.findWhere({div_id: parseInt(divNum)});
+    var picModel2 = that.collection.findWhere({div_id: (parseInt(divNum) + 1)});
+    console.log(picModel2);
+    picModel1.set({div_id: (parseInt(divNum)+ 1)});
+    if(picModel2) {
+      picModel2.set({div_id: (parseInt(divNum))});
+    }
+  },
+
+  up: function(event) {
+    event.preventDefault();
+    var that = this;
+    var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
+    var picModel1 = that.collection.findWhere({div_id: parseInt(divNum)});
+    var picModel2 = that.collection.findWhere({div_id: (parseInt(divNum) - 1)});
+    picModel1.set({div_id: (parseInt(divNum) - 1)});
+    picModel2.set({div_id: (parseInt(divNum))});
   }
 
 });

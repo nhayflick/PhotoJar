@@ -10,7 +10,7 @@
       <div class='span8 offset1 palette-night-dark well'>
         <div class='span8'></div>
           <div class='row' style='overflow: hidden;'>
-          <div id="photocontent"> </div>
+          <div id="content"> </div>
           <div class='span8' id="content"></div>
           <div class='row'>
           <div class='span8'><br></div>
@@ -30,7 +30,6 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
     filepicker.setKey('AE7UBn35SviLp7DDkDDAxz');
     var $sidebar = $("#sidebar");
     var $content = $("#content");
-    var $photoContent = $("#photocontent")
     var $navbar = $(".navbar");
     var current_user = <%= current_user.to_json.html_safe %>;
     var current_user_jars = <%= @user_jars.to_json.html_safe %>;
@@ -38,7 +37,6 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
     window.PJ.initialize(
       $sidebar,
       $content,
-      $photoContent,
       $navbar,
       current_user,
       current_user_jars
