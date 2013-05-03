@@ -7,6 +7,7 @@ class Jar < ActiveRecord::Base
 
   belongs_to :user
   has_many :photos, inverse_of: :jar
+  has_many :jar_tags
   accepts_nested_attributes_for :photos
 
   validates :title, presence: true, uniqueness: {scope: :user_id}
