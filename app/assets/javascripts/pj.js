@@ -9,6 +9,10 @@ window.PJ = {
     var that = this;
     PJ.Store.CurrentUser = new PJ.Models.User(user);
     PJ.Store.CurrentUserJars = new PJ.Collections.Jars(jars);
+    PJ.Store.AllUsers = new PJ.Collections.Users();
+    console.log(PJ.Store.AllUsers);
+    PJ.Store.AllUsers.add([PJ.Store.CurrentUser]);
+    console.log(PJ.Store.AllUsers);
     new PJ.Routers.JarsRouter($content);
     that.installSidebar($sidebar);
     that.installNavbar($navbar);

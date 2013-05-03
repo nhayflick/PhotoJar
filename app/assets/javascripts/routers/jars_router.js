@@ -56,7 +56,9 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     that.$contentEl.empty();
     PJ.Store.CurrentUserJars.each(function(jar) {
       // that.show(jar.get("id")
-      user = new PJ.Models.User({id: jar.get('user_id')});
+      console.log(jar)
+      console.log(jar.get('user_id'))
+      var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
         success: function() {
           console.log(user);
@@ -82,14 +84,12 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   userShow: function(id) {
     var that = this;
     that.$contentEl.empty();
-    user = new PJ.Models.User({id: id});
+    user = PJ.Models.User.findOrCreate({id: id});
     user.fetch({
       success: function() {
         user.get('jars').each( function(jar) {
-          console.log(jar);
           jar.get('photos').fetch({
             success: function() {
-              console.log(jar.get('photos'));
               var showJarView = new PJ.Views.ShowJarView({
                 //the jar object
                 model: jar,
@@ -99,7 +99,6 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
               showJarView.clearTiles();
               that.$contentEl.append(showJarView.render().$el);
               showJarView.updateTiles();
-              // showJarView.disableResize();
             }
           });  
         });
