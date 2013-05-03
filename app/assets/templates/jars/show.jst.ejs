@@ -1,4 +1,9 @@
-<h3 style='text-align:center' class='palette'> <%= jar.escape('title') %> </h3>
+<div  class='palette'>
+<%= console.log(jar.get('user'))%>
+At: <%= jar.escape('created_at')%>
+
+
+<h3 style='text-align:center'> <%= jar.escape('title') %> </h3>
 
 <ul style='list-style:none; background-color:#FFFFFF; width:440px; margin:auto; border-radius: 4px;' id="photocontent">
   <li class="tilespan0 my-well tile-small"  id="photocontent" style='overflow: hidden;'> <div class='photo-tile' data-id="0"></div></li>
@@ -8,3 +13,4 @@
     <div class='span8'></div>
   </div>
 </ul>
+</div>

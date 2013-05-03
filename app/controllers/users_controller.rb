@@ -1,6 +1,12 @@
 class UsersController < ApplicationController
+  respond_to :json
 
   include SessionsHelper
+
+  def index
+    @users = User.all
+    render json: @users
+  end
 
   def new
     @user = User.new
@@ -14,5 +20,10 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def show
+    user = User.find(params[:id])
+    render json: user.to_json(:include => :jars)
   end
 end

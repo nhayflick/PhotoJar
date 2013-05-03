@@ -8,7 +8,7 @@ class JarsController < ApplicationController
     @user_jars = Jar.all
     respond_to do |format|
       format.html {render :index}
-      format.json {render :json => @user_jars}
+      format.json {render :json => @user_jars.to_json(:include => :user)}
     end
     #currently only grabs the logged_in user's jars
   end

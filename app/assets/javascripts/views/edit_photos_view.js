@@ -16,14 +16,10 @@ PJ.Views.EditJarView = Backbone.View.extend({
     this.collection.on('add', renderCallback);
     this.collection.on('remove', renderCallback);
     this.collection.on('save', parse);
-
-    $( "#photocontent" ).sortable();
-    $( "#photocontent" ).disableSelection();
   },
 
   render: function() {
     var that = this;
-    console.log("hereherehers");
     var renderedContent = JST["jars/show"]({
       jar: that.model
     });
@@ -60,7 +56,7 @@ PJ.Views.EditJarView = Backbone.View.extend({
         console.log($tile.parent());
       }
       $tile.append('<img src="' + photoURL + '/convert?w=430&h=' + height + '&fit=crop" class="rounded-photo"/>');
-      $tile.append('<div class="hidden-menu"><h4><a href="#" class="expand">Expand</a><a href="#" class="shrink">Shrink</a><a href="#" class="up">Up</a><a href="#" class="down">Down</a><a href="#" class="delete">Delete</a></h4></div>');
+      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand</a></li><li><a href="#" class="shrink">Shrink</a></li><li><a href="#" class="up">Up</a></li><li><a href="#" class="down">Down</a></li><li><a href="#" class="delete">Delete</a></li></ul></div>');
     });
   },
 

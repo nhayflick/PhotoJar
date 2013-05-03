@@ -13,7 +13,6 @@ window.PJ = {
     that.installSidebar($sidebar);
     that.installNavbar($navbar);
     Backbone.history.start();
-    Backbone.history.navigate("#/jars");
   },
 
   installSidebar: function($sidebar) {

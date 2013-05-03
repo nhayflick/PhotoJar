@@ -8,7 +8,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   routes: {
     'jars': 'index',
     'jars/new': 'new',
-    'jars/:id': 'show' 
+    'jars/:id': 'show',
+    'users/:id': 'userShow' 
   },
 
   show: function(id){
@@ -34,7 +35,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
 
   new: function(){
     var that = this;
-    var model = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.get('id'), title: PJ.Store.CurrentUser.get('user_name') + 'new jar'});
+    var model = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.get('id')});
     var collection = model.get('photos')
     var newJarView = new PJ.Views.NewJarView({
       model: model
@@ -70,6 +71,34 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         // showJarView.disableResize();
       }
     });  
+    });
+  },
+
+  userShow: function(id) {
+    var that = this;
+    that.$contentEl.empty();
+    user = new PJ.Models.User({id: id});
+    user.fetch({
+      success: function() {
+        user.get('jars').each( function(jar) {
+          console.log(jar);
+          jar.get('photos').fetch({
+            success: function() {
+              console.log(jar.get('photos'));
+              var showJarView = new PJ.Views.ShowJarView({
+                //the jar object
+                model: jar,
+                //the jar's photos
+                collection: jar.get('photos')
+              })
+              showJarView.clearTiles();
+              that.$contentEl.append(showJarView.render().$el);
+              showJarView.updateTiles();
+              // showJarView.disableResize();
+            }
+          });  
+        });
+      }
     });
   }
 
