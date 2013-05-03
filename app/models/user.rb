@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :user_name, :email, :password, :password_confirmation
+  attr_accessible :user_name, :email, :password, :password_confirmation, :avatar_url
   has_secure_password
 
   has_many :jars
@@ -12,6 +12,11 @@ class User < ActiveRecord::Base
   validates :email, presence: true, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
+
+  def as_json(options={})
+      super(:include => :jars)
+  end
+
 
   private
 

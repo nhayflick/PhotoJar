@@ -1,7 +1,7 @@
-<div  class='palette'>
-<%= console.log(jar.get('user'))%>
-At: <%= jar.escape('created_at')%>
-
+<div  class='palette' style='margin: 20px;'>
+<img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
+<%= jar.get('user').escape('user_name')%> <br>
+<%= jQuery.timeago(jar.escape("created_at"))  %>
 
 <h3 style='text-align:center'> <%= jar.escape('title') %> </h3>
 

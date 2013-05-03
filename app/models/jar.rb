@@ -11,4 +11,9 @@ class Jar < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: {scope: :user_id}
 
+  def as_json(options={})
+    super(:include => :user)
+  end
+
+
 end

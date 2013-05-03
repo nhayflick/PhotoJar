@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501213138) do
+ActiveRecord::Schema.define(:version => 20130503205446) do
 
   create_table "jars", :force => true do |t|
     t.integer  "user_id"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(:version => 20130501213138) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.string   "avatar_url"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

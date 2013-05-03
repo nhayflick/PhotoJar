@@ -11,6 +11,7 @@ PJ.Views.ListJarsView = Backbone.View.extend({
   },
 
   render: function(){
+    console.log("collection changed!")
     var that = this;
     var renderedContent = JST['jars/list']({
       jars: that.collection

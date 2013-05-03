@@ -16,6 +16,8 @@
 //= require jquery.ui.widget
 //= require jquery.iframe-transport
 //= require jquery.fileupload
+//= require jquery.timeago
+
 //= require underscore
 //= require backbone
 //= require backbone-relational
