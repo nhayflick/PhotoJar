@@ -6,6 +6,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   },
 
   routes: {
+    '': 'index',
     'jars': 'index',
     'jars/new': 'new',
     'jars/:id': 'show',
@@ -54,14 +55,11 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   index: function() {
     var that = this;
     that.$contentEl.empty();
+    console.log(PJ.Store.CurrentUserJars);
     PJ.Store.CurrentUserJars.each(function(jar) {
-      // that.show(jar.get("id")
-      console.log(jar)
-      console.log(jar.get('user_id'))
       var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
         success: function() {
-          console.log(user);
           jar.get('photos').fetch({
           success: function() {
             var showJarView = new PJ.Views.ShowJarView({

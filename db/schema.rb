@@ -11,16 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503223529) do
-
-  create_table "jar_tags", :force => true do |t|
-    t.integer  "jar_id"
-    t.string   "tag"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "jar_tags", ["jar_id"], :name => "index_jar_tags_on_jar_id", :unique => true
+ActiveRecord::Schema.define(:version => 20130504182957) do
 
   create_table "jars", :force => true do |t|
     t.integer  "user_id"
@@ -41,6 +32,19 @@ ActiveRecord::Schema.define(:version => 20130503223529) do
     t.integer  "jar_id"
     t.integer  "div_id"
     t.string   "div_class"
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "jar_id"
+    t.integer  "tag_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

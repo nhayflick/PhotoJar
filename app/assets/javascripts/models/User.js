@@ -4,8 +4,6 @@ PJ.Models.User = Backbone.RelationalModel.extend({
   relations: [{
     type: Backbone.HasMany,
     key: "jars",
-    // keyDestination: "photos_attributes",
-    // includeInJSON: false,
     relatedModel: "PJ.Models.Jar",
     collectionType: "PJ.Collections.Jars",
     

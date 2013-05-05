@@ -2,7 +2,7 @@ PJ.Views.ShowJarView = Backbone.View.extend({
 
   render: function() {
     var that = this;
-    console.log("hereherehers");
+          console.log(that.model);
     var renderedContent = JST["jars/show"]({
       jar: that.model
     });

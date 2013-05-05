@@ -1,5 +1,5 @@
 <div class="navbar">
- <h2 style='text-align:center; margin: 20px;'><%= image_tag "Mason_Jar_Small.jpg" %> PhotoJar</h2>
+ <a href="/#"><h2 style='text-align:center; margin: 20px;'><%= image_tag "Mason_Jar_Small.jpg" %> PhotoJar</h2></a>
   </div>
 </div>
 
@@ -33,13 +33,15 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
     var $navbar = $(".navbar");
     var current_user = <%= current_user.to_json.html_safe %>;
     var current_user_jars = <%= @user_jars.to_json.html_safe %>;
+    var tags = <%= Tag.all.to_json.html_safe %>;
 
     window.PJ.initialize(
       $sidebar,
       $content,
       $navbar,
       current_user,
-      current_user_jars
+      current_user_jars,
+      tags
 
     )
   });

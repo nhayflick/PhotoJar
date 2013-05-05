@@ -1,5 +1,6 @@
 <div  class='palette' style='margin: 20px;'>
-<b> <a href='#/users/<%=user.escape('id')%>'><img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
+<% console.log(jar.get('user')) %>
+<b> <a href='#/users/<%=jar.get('user').escape('id')%>'><img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
 <%= jar.get('user').escape('user_name')%> </a><br>
 <%= jQuery.timeago(jar.escape("created_at"))  %>
 
@@ -13,4 +14,10 @@
     <div class='span8'></div>
   </div>
 </ul>
+<% jar.get('taggings').each( function(tagging) { %>
+  <% console.log(tagging.length) %>
+  <% if(tagging.length > 0) { %>
+    <%= tagging.get('tag').escape('name') %>
+    <% } %>
+<% }) %>
 </div>

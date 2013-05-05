@@ -4,7 +4,8 @@ PhotoJar::Application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create, :show, :destroy, :index]
   resources :jars do
-    resources :photos
+    resources :photos, only: [:create, :index]
   end
-  resources :photos
+  resources :tags, only: [:create, :destroy, :index]
+  resources :photos, only: [:create, :index]
 end

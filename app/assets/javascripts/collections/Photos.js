@@ -4,7 +4,6 @@ PJ.Collections.Photos = Backbone.Collection.extend({
     this.jar = options.jar;
   },
   url: function() {
-    console.log("here in collections");
     return '/jars/' + this.jar.id + '/photos';
   }
 });
