@@ -15,9 +15,6 @@
   </div>
 </ul>
 <% jar.get('taggings').each( function(tagging) { %>
-  <% console.log(tagging.length) %>
-  <% if(tagging.length > 0) { %>
     <%= tagging.get('tag').escape('name') %>
-    <% } %>
 <% }) %>
 </div>

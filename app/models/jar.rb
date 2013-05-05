@@ -9,7 +9,8 @@ class Jar < ActiveRecord::Base
 
   has_many :taggings, inverse_of: :tag
   has_many :tags, through: :taggings
-  accepts_nested_attributes_for :taggings
+  # changed from taggings here
+  accepts_nested_attributes_for :tags
   
   has_many :photos, inverse_of: :jar
   accepts_nested_attributes_for :photos
@@ -20,7 +21,7 @@ class Jar < ActiveRecord::Base
     json = super
     json['photos'] = photos.as_json
     json['taggings'] = taggings.as_json
-    json['user'] = taggings.as_json
+    json['user'] = user.as_json
 
     json
   end
