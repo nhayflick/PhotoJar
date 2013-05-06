@@ -1,0 +1,6 @@
+<div style='text-align: center;'>
+<h2 class='palette'>Tags:</h2>
+
+<%console.log(tags.pluck('name').join(', '))%>
+<input name="tagsinput" id="tagsinput" class='tagsinput' value="<%=tags.pluck('name').join(', ')%>"/>
+</div>

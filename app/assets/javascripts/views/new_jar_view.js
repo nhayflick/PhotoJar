@@ -19,10 +19,7 @@ PJ.Views.NewJarView = Backbone.View.extend({
     var that = this;
     that.model.save({title: $('#jar_title').val()}, {success: function() {
         PJ.Store.CurrentUserJars.add(that.model);
-        console.log(that.model)
-        // $('li#photocontent').resizable( "disable" );
         Backbone.history.navigate("#/jars/"+that.model.get('id'));
-        console.log("Saved!")
       }, error: function() {
         console.log("Fail!")
       }

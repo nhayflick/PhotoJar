@@ -36,20 +36,27 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
 
   new: function(){
     var that = this;
-    var model = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.get('id')});
-    var collection = model.get('photos')
+    var jar = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.get('id')});
+    var photos = jar.get('photos')
+    var tags = new PJ.Collections.Tags(jar.get('taggings').reduce(function(a, b) { return a.push(b.get('tag')); }, []));
+    console.log(tags);
     var newJarView = new PJ.Views.NewJarView({
-      model: model
+      model: jar,
+      tags: tags
     });
     var newPhotoView = new PJ.Views.NewPhotoView({
-      collection: collection
+      collection: photos
+    });
+    var newTagView = new PJ.Views.NewTagView({
+      collection: tags
     });
     var editJarView = new PJ.Views.EditJarView({
-      model: model,
-      collection: collection
+      model: jar,
+      collection: photos,
+      tags: tags
     })
-    that.$contentEl.html(newJarView.render().$el).append(newPhotoView.render().$el).append(editJarView.render().$el);
-    // showJarView.clearTiles();
+    that.$contentEl.html(newJarView.render().$el).append(newTagView.render().$el).append(newPhotoView.render().$el).append(editJarView.render().$el);
+    newTagView.createTagField();
   },
 
   index: function() {

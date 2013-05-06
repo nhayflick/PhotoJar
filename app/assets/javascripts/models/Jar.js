@@ -33,5 +33,17 @@ PJ.Models.Jar = Backbone.RelationalModel.extend({
       keySource: "jar_id",
       // includeInJSON: "id"
     }
-  }]
+  }],
+
+  toJSON: function(){
+    var that = this;
+    var tagsCollection = new PJ.Collections.Tags(that.get('taggings').reduce(function(a, b) { a.push(b.get('tag')); }, []))
+    debugger
+    console.log(tagsCollection);
+    json = {jar : that.attributes};
+    // return _.extend({}, json, {
+    //   tags_attributes: tagsCollection.toJSON()
+    // });
+    return json
+  }
 })

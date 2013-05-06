@@ -9,7 +9,6 @@ class Jar < ActiveRecord::Base
 
   has_many :taggings, inverse_of: :tag
   has_many :tags, through: :taggings
-  # changed from taggings here
   accepts_nested_attributes_for :tags
   
   has_many :photos, inverse_of: :jar

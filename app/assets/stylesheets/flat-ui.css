@@ -1239,6 +1239,7 @@ textarea,
   border: 2px solid #1abc9c;
   border-radius: 6px;
   height: 100px;
+  width: 80%;
   padding: 6px 1px 1px 6px;
   overflow-y: auto;
   text-align: left; }

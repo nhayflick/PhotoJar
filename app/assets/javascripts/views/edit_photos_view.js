@@ -1,7 +1,7 @@
 PJ.Views.EditJarView = Backbone.View.extend({
 
   events: {
-    'click .delete': 'delete',
+    'click .remove': 'remove',
     'click .expand': 'expand',
     'click .shrink': 'shrink',
     'click .down': 'down',
@@ -27,16 +27,6 @@ PJ.Views.EditJarView = Backbone.View.extend({
     return that;
   },
 
-  // render: function() {
-  //   var that = this;
-  //   console.log(that.collection);
-  //   renderedPhotos = JST["photos/edit"]({
-  //     photos: that.collection
-  //   })
-  //   that.$el.html(renderedPhotos);
-  //   return that;
-  // },
-
   updateTiles: function() {
     var that = this;
     that.clearTiles();
@@ -50,33 +40,30 @@ PJ.Views.EditJarView = Backbone.View.extend({
         }
       $tile = that.$('[data-id="' + targetDivID + '"]')
       if(photo.get('div_class')) {
-        console.log(photo.get('div_class'))
         $tile.parent().removeClass('tilespan0 tilespan3 tilespan6');
         $tile.parent().addClass(photo.get('div_class'));
-        console.log($tile.parent());
       }
       $tile.append('<img src="' + photoURL + '/convert?w=430&h=' + height + '&fit=crop" class="rounded-photo"/>');
-      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand</a></li><li><a href="#" class="shrink">Shrink</a></li><li><a href="#" class="up">Up</a></li><li><a href="#" class="down">Down</a></li><li><a href="#" class="delete">Delete</a></li></ul></div>');
+      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand</a></li><li><a href="#" class="shrink">Shrink</a></li><li><a href="#" class="up">Up</a></li><li><a href="#" class="down">Down</a></li><li><a href="#" class="remove">Delete</a></li></ul></div>');
     });
   },
 
-  delete: function(event) {
+  remove: function(event) {
+    event.preventDefault();
     var that = this;
     var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
     toDelete = that.collection.findWhere({div_id: parseInt(divNum)});
     // filepicker.remove
+    console.log(toDelete);
     that.collection.remove(toDelete);
-
+    console.log(that.collection);
   },
 
   parse: function() {
     var that = this;
     var posArray = $("#photocontent").sortable( "toArray", {attribute: 'data-id'});
     _.each(posArray, function(pos, index) {
-      console.log(pos);
-      console.log(that.collection.at(parseInt(pos)));
       if (that.collection.at(parseInt(pos))) {
-        console.log(index);
         that.collection.at(parseInt(pos)).set({div_id: (index - 1)});
       }
     });
@@ -97,7 +84,6 @@ PJ.Views.EditJarView = Backbone.View.extend({
     var that = this;
     var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
     var picModel = that.collection.findWhere({div_id: parseInt(divNum)});
-    console.log(picModel);
     picModel.set({div_class: 'tilespan6'});
   },
 
@@ -106,7 +92,6 @@ PJ.Views.EditJarView = Backbone.View.extend({
     var that = this;
     var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
     var picModel = that.collection.findWhere({div_id: parseInt(divNum)});
-    console.log(picModel);
     picModel.set({div_class: 'tilespan3'});
   },
 
@@ -116,7 +101,6 @@ PJ.Views.EditJarView = Backbone.View.extend({
     var divNum = $($(event.target).parents('.photo-tile')[0]).attr('data-id');
     var picModel1 = that.collection.findWhere({div_id: parseInt(divNum)});
     var picModel2 = that.collection.findWhere({div_id: (parseInt(divNum) + 1)});
-    console.log(picModel2);
     picModel1.set({div_id: (parseInt(divNum)+ 1)});
     if(picModel2) {
       picModel2.set({div_id: (parseInt(divNum))});
