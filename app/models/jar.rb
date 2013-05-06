@@ -19,7 +19,7 @@ class Jar < ActiveRecord::Base
   def as_json(options={})
     json = super
     json['photos'] = photos.as_json
-    json['taggings'] = taggings.as_json
+    json['tags'] = tags.as_json
     json['user'] = user.as_json
 
     json

@@ -6,6 +6,6 @@ PhotoJar::Application.routes.draw do
   resources :jars do
     resources :photos, only: [:create, :index]
   end
-  resources :tags, only: [:create, :destroy, :index]
+  resources :tags, only: [:create, :destroy, :index, :show]
   resources :photos, only: [:create, :index]
 end

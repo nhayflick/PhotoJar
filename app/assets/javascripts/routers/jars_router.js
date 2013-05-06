@@ -10,7 +10,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     'jars': 'index',
     'jars/new': 'new',
     'jars/:id': 'show',
-    'users/:id': 'userShow' 
+    'users/:id': 'userShow',
+    'tags/:id': 'tagShow'
   },
 
   show: function(id){
@@ -38,7 +39,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     var that = this;
     var jar = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.get('id')});
     var photos = jar.get('photos')
-    var tags = new PJ.Collections.Tags(jar.get('taggings').reduce(function(a, b) { return a.push(b.get('tag')); }, []));
+    // var tags = new PJ.Collections.Tags(jar.get('tags'));
+    var tags = jar.get('tags');
     console.log(tags);
     var newJarView = new PJ.Views.NewJarView({
       model: jar,
@@ -76,7 +78,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
               collection: jar.get('photos')
             })
             showJarView.clearTiles();
-            that.$contentEl.append(showJarView.render().$el);
+            that.$contentEl.prepend(showJarView.render().$el);
             showJarView.updateTiles();
             // showJarView.disableResize();
             }
@@ -108,6 +110,41 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
           });  
         });
       }
+    });
+  },
+
+  tagShow: function(id) {
+    var that = this;
+    that.$contentEl.empty();
+    var taggedJars = new PJ.Collections.Jars();
+    PJ.Store.CurrentUserJars.each(function(jar) {
+      console.log(jar.get('tags'))
+      if (jar.get('tags').where({name: id}).length > 0) {
+        console.log(jar.get('tags').contains({name: id}))
+        taggedJars.add([jar])
+      }
+    });
+    console.log(that.taggedJars);
+    taggedJars.each( function(jar) {
+      var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
+      user.fetch({
+        success: function() {
+          jar.get('photos').fetch({
+          success: function() {
+            var showJarView = new PJ.Views.ShowJarView({
+              //the jar object
+              model: jar,
+              //the jar's photos
+              collection: jar.get('photos')
+            })
+            showJarView.clearTiles();
+            that.$contentEl.prepend(showJarView.render().$el);
+            showJarView.updateTiles();
+            // showJarView.disableResize();
+            }
+          });
+        }
+      });
     });
   }
 

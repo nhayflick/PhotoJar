@@ -5,4 +5,5 @@ class Tag < ActiveRecord::Base
   has_many :jars, through: :taggings
 
   validates :name, presence: true
+
 end
