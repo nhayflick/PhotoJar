@@ -1,8 +1,8 @@
 class SessionsController < ApplicationController
-  include SessionsHelper
 
-  def new
-  end
+  respond_to :json
+
+  include SessionsHelper
 
   def create
     user = User.find_by_email(params[:session][:email].downcase)
@@ -16,7 +16,10 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    respond_to do |format|
+      format.js { render :nothing => true }
+      format.json { render json: "{}", :status => :ok}
+    end
     log_out
-    redirect_to root_url
   end
 end

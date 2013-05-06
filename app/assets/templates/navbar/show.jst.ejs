@@ -1,7 +1,13 @@
 <div style='margin: 20px;'>
-Logged in as: <b> <a href='#/users/<%=user.escape('id')%>'><img src="<%=user.escape('avatar_url')%>/convert?w=50&h=50&fit=crop" class="rounded-photo"/>
-<%=user.escape('user_name')%></b> </a>
+<% if(!user.isEmpty()) {%>
+Logged in as: <b> <a href='#/users/<%=user.get(1).escape('id')%>'><img src="<%=user.get(1).escape('avatar_url')%>/convert?w=50&h=50&fit=crop" class="rounded-photo"/>
+<%=user.get(1).escape('user_name')%></b> </a>
+<%}%>
 
 <h5 align="right"> 
-<a href="/sessions#destroy"> Log out <-- </a></h5>
+<% if(!user.isEmpty()) {%>
+<a href="#" id="logout"> Log Out</a></h5>
+<%}else{%>
+<a href="/session/new" id="login"> Log In</a></h5>
+<%}%>
 </div>

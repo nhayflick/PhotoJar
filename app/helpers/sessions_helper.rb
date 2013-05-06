@@ -11,6 +11,7 @@ module SessionsHelper
   end
 
   def log_out
+    cookies[:remember_token] = nil
     session[:user_name] = nil
   end
 
