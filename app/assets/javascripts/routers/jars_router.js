@@ -37,7 +37,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
 
   new: function(){
     var that = this;
-    var jar = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.get('id')});
+    var jar = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.first().get('id')});
     var photos = jar.get('photos')
     // var tags = new PJ.Collections.Tags(jar.get('tags'));
     var tags = jar.get('tags');
@@ -64,8 +64,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   index: function() {
     var that = this;
     that.$contentEl.empty();
-    console.log(PJ.Store.CurrentUserJars);
-    PJ.Store.CurrentUserJars.each(function(jar) {
+    console.log(PJ.Store.CurrentUserJars.sort());
+    PJ.Store.CurrentUserJars.sort().each(function(jar) {
       var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
         success: function() {

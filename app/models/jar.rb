@@ -1,5 +1,5 @@
 
-  #A jar is a collection of upto 12 uploaded photos, owned by an individual user
+  #A jar is a collection of upto 4 uploaded photos, owned by an individual user
 
 class Jar < ActiveRecord::Base
 

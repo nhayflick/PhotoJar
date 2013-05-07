@@ -1,8 +1,7 @@
 PJ.Collections.Jars = Backbone.Collection.extend({
   model: PJ.Models.Jar,
   url: '/jars',
-  // comparator: function(jar) {
-  //   console.log (new Date(jar.get("created_at")))
-  //   return new Date(jar.get("created_at"))
-  // }
+  comparator: function(a, b) {
+    return a.get("created_at") < b.get("created_at")
+  }
 });

@@ -44,7 +44,7 @@ PJ.Views.EditJarView = Backbone.View.extend({
         $tile.parent().addClass(photo.get('div_class'));
       }
       $tile.append('<img src="' + photoURL + '/convert?w=430&h=' + height + '&fit=crop" class="rounded-photo"/>');
-      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand</a></li><li><a href="#" class="shrink">Shrink</a></li><li><a href="#" class="up">Up</a></li><li><a href="#" class="down">Down</a></li><li><a href="#" class="remove">Delete</a></li></ul></div>');
+      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand"><i class="icon-resize-horizontalExpand">Expand</i></a></li><li><a href="#" class="shrink"><i class="icon-resize-small"></i></a></li><li><a href="#" class="up">Up</a></li><li><a href="#" class="down">Down</a></li><li><a href="#" class="remove">Delete</a></li></ul></div>');
     });
   },
 

@@ -64,8 +64,10 @@ PhotoJar::Application.configure do
     # Add the fonts path
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
+
+
   # Precompile additional assets
-  config.assets.precompile += %w( .svg .eot .woff .ttf )
+  config.assets.precompile += %w( .svg .eot .woff .ttf)
 
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)

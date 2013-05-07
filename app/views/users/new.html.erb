@@ -26,6 +26,9 @@
 
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation %>
+
+      <%= f.hidden_field 'avatar_url', :value => 'https://www.filepicker.io/api/file/wJbI6M9SUqYll8UGaJwn' %>
+
       </p>
       <p>
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>

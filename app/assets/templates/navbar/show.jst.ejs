@@ -1,7 +1,8 @@
 <div style='margin: 20px;'>
+<%= console.log(user.first()) %>
 <% if(!user.isEmpty()) {%>
-Logged in as: <b> <a href='#/users/<%=user.get(1).escape('id')%>'><img src="<%=user.get(1).escape('avatar_url')%>/convert?w=50&h=50&fit=crop" class="rounded-photo"/>
-<%=user.get(1).escape('user_name')%></b> </a>
+Logged in as: <b> <a href='#/users/<%=user.first().escape('id')%>'><img src="<%=user.first().escape('avatar_url')%>/convert?w=50&h=50&fit=crop" class="rounded-photo"/>
+<%=user.first().escape('user_name')%></b> </a>
 <%}%>
 
 <h5 align="right"> 
