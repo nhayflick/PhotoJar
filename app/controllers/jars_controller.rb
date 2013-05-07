@@ -33,7 +33,8 @@ class JarsController < ApplicationController
 
   def update
     @jar = Jar.find(params[:id])
-    if @jar.save
+    @jar.assign_attributes(params[:jar].except(:created_at, :image_content_type, :image_file_name, :image_file_size, :image_updated_at, :updated_at))
+    if (@jar.user == current_user && @jar.save)
       render json: @jar
     else
       render json: @jar.errors, status: 422

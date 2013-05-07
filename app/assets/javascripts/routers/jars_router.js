@@ -11,7 +11,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     'jars/new': 'new',
     'jars/:id': 'show',
     'users/:id': 'userShow',
-    'tags/:id': 'tagShow'
+    'tags/:id': 'tagShow',
+    'jars/:id/edit': 'edit',
   },
 
   show: function(id){
@@ -52,12 +53,11 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     var newTagView = new PJ.Views.NewTagView({
       collection: tags
     });
-    var editJarView = new PJ.Views.EditJarView({
+    var editPhotosView = new PJ.Views.EditPhotosView({
       model: jar,
-      collection: photos,
-      tags: tags
+      collection: photos
     })
-    that.$contentEl.html(newJarView.render().$el).append(newTagView.render().$el).append(newPhotoView.render().$el).append(editJarView.render().$el);
+    that.$contentEl.html(newJarView.render().$el).append(newTagView.render().$el).append(newPhotoView.render().$el).append(editPhotosView.render().$el);
     newTagView.createTagField();
   },
 
@@ -146,6 +146,30 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         }
       });
     });
+  },
+
+  edit: function(id){
+    var that = this;
+    var jar =  PJ.Models.Jar.findOrCreate({id: id});
+    var photos = jar.get('photos')
+    var tags = jar.get('tags');
+    console.log(photos)
+    var editPhotosView = new PJ.Views.EditPhotosView({
+      model: jar,
+      collection: photos
+    });
+    var newPhotoView = new PJ.Views.NewPhotoView({
+      collection: photos
+    });
+    var newTagView = new PJ.Views.NewTagView({
+      collection: tags
+    });
+    var editJarView = new PJ.Views.EditJarView({
+      model: jar
+    });
+    that.$contentEl.html(editPhotosView.render().$el).append(newPhotoView.render().$el).append(newTagView.render().$el).append(editJarView.render().$el);
+    newTagView.createTagField();
+    editPhotosView.updateTiles();
   }
 
 });

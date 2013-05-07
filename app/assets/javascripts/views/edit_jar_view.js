@@ -1,18 +1,18 @@
-PJ.Views.NewJarView = Backbone.View.extend({
+PJ.Views.EditJarView = Backbone.View.extend({
 
   initialize: function() {
     this.photos = []
   },
 
-  events: {
-    'click button.submit': 'create'
-  },
-
   render: function() {
     var that = this;
-    var renderedContent = JST['jars/new']();
+    renderedContent = JST["jars/edit"]();
     that.$el.html(renderedContent);
     return that;
+  },
+
+  events: {
+    'click button.submit': 'create'
   },
 
   create: function() {

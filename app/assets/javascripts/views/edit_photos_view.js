@@ -1,4 +1,4 @@
-PJ.Views.EditJarView = Backbone.View.extend({
+PJ.Views.EditPhotosView = Backbone.View.extend({
 
   events: {
     'click .remove': 'remove',
@@ -12,10 +12,10 @@ PJ.Views.EditJarView = Backbone.View.extend({
     var that = this;
     var renderCallback = that.updateTiles.bind(that);
     var parse = that.parse.bind(that);
-    this.collection.on('change', renderCallback);
-    this.collection.on('add', renderCallback);
-    this.collection.on('remove', renderCallback);
-    this.collection.on('save', parse);
+    that.collection.on('change', renderCallback);
+    that.collection.on('add', renderCallback);
+    that.collection.on('remove', renderCallback);
+    that.collection.on('save', parse);
   },
 
   render: function() {
@@ -44,7 +44,7 @@ PJ.Views.EditJarView = Backbone.View.extend({
         $tile.parent().addClass(photo.get('div_class'));
       }
       $tile.append('<img src="' + photoURL + '/convert?w=430&h=' + height + '&fit=crop" class="rounded-photo"/>');
-      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand"><i class="icon-resize-horizontalExpand">Expand</i></a></li><li><a href="#" class="shrink"><i class="icon-resize-small"></i></a></li><li><a href="#" class="up">Up</a></li><li><a href="#" class="down">Down</a></li><li><a href="#" class="remove">Delete</a></li></ul></div>');
+      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand </a><i class="icon-resize-horizontal icon-white"></i></li><li><a href="#" class="shrink"> Shrink </a><i class="icon-resize-small icon-white"></i></li><li><a href="#" class="up">Swap Back </a><i class="icon-arrow-right icon-white"></i></li><li><a href="#" class="down">Swap Forward </a><i class="icon-arrow-left icon-white"></i></li><li><a href="#" class="remove">Remove </a><i class="icon-remove icon-white"></i></li></ul></div>');
     });
   },
 

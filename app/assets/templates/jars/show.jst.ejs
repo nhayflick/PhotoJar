@@ -1,10 +1,29 @@
+<% if(window.location.href.indexOf("edit") > -1) {
+  var edit = true;
+} else {
+  var edit = false;
+}%>
+
 <div  class='palette' style='margin: 20px;'>
-<% console.log(jar.get('user')) %>
+<% if(!jar.isNew()) {%>
 <b> <a href='#/users/<%=jar.get('user').escape('id')%>'><img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
 <%= jar.get('user').escape('user_name')%> </a><br>
-<%= jQuery.timeago(jar.escape("created_at"))  %>
+<%= jQuery.timeago(jar.escape("created_at"))  %><br>
 
-<h3 style='text-align:center'> <%= jar.escape('title') %> </h3>
+<%if(jar.get('user') == PJ.Store.CurrentUser.first() && !edit) { %>
+  <div style="text-align:right;"><i class="icon-edit icon-white"></i><a href="/#/jars/<%=jar.get('id')%>/edit"> Edit</a></div>
+<%}%>
+<br>
+<%}%>
+
+<%if(edit) {%>
+  <form action='#'  class='new_jar palette' id='new_jar' method='post' style='text-align:center'>
+  <h3> Edit </h3>
+  <label for='jar_title'/>
+  <input id='jar_title' name='jar[title]' size='60' type='text' value='<%= jar.escape('title') %>'/>
+<%}else{%>
+  <h3> <%= jar.escape('title') %> </h3>
+<%}%>
 
 <ul style='list-style:none; background-color:#FFFFFF; width:440px; margin:auto; border-radius: 4px;' id="photocontent">
   <li class="tilespan0 my-well tile-small"  id="photocontent" style='overflow: hidden;'> <div class='photo-tile' data-id="0"></div></li>
@@ -14,10 +33,17 @@
     <div class='span8'></div>
   </div>
 </ul>
+
+<%if(!edit){%>
 <br>
 <ul>
-<% jar.get('tags').each( function(tag) { %>
-    <li style='list-style-type: none;  display: inline; padding-right: 10px;'><a href="#/tags/<%= tag.escape('name') %>" style='text-decoration: none;'><span class='tag-show'><%= tag.escape('name') + "  "%></span></a></li>
-<% }) %>
+  <% jar.get('tags').each( function(tag) { %>
+      <li style='list-style-type: none;  display: inline; padding-right: 10px;'><a href="#/tags/<%= tag.escape('name') %>" style='text-decoration: none;'><span class='tag-show'><%= tag.escape('name') + "  "%></span></a></li>
+  <% }) %>
 </ul>
+<%}%>
+
+<%if(edit){%>
+</form>
+<%}%>
 </div>
