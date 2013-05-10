@@ -27,6 +27,7 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
     return that;
   },
 
+//Use as template
   updateTiles: function() {
     var that = this;
     that.clearTiles();
@@ -44,7 +45,18 @@ PJ.Views.EditPhotosView = Backbone.View.extend({
         $tile.parent().addClass(photo.get('div_class'));
       }
       $tile.append('<img src="' + photoURL + '/convert?w=430&h=' + height + '&fit=crop" class="rounded-photo"/>');
-      $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand </a><i class="icon-resize-horizontal icon-white"></i></li><li><a href="#" class="shrink"> Shrink </a><i class="icon-resize-small icon-white"></i></li><li><a href="#" class="up">Swap Back </a><i class="icon-arrow-right icon-white"></i></li><li><a href="#" class="down">Swap Forward </a><i class="icon-arrow-left icon-white"></i></li><li><a href="#" class="remove">Remove </a><i class="icon-remove icon-white"></i></li></ul></div>');
+      if(photo.get('div_class') == "tilespan3") {
+        $tile.append('<div class="hidden-menu"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand </a><i class="icon-resize-horizontal icon-white"></i></li><li><a href="#" class="shrink"> Shrink </a><i class="icon-resize-small icon-white"></i></li><li><a href="#" class="down">Swap Forward </a><i class="icon-arrow-right icon-white"></i></li><li><a href="#" class="up">Swap Back </a><i class="icon-arrow-left icon-white"></i></li><li><a href="#" class="remove">Remove </a><i class="icon-remove icon-white"></i></li></ul></div>');
+      } else if(photo.get('div_class') == "tilespan6") {
+        $tile.append('<div class="hidden-menu-wide"><ul class="palette" style=" list-style-type: none;"><li><a href="#" class="expand">Expand </a><i class="icon-resize-horizontal icon-white"></i></li><li><a href="#" class="shrink"> Shrink </a><i class="icon-resize-small icon-white"></i></li><li><a href="#" class="down">Swap Forward </a><i class="icon-arrow-right icon-white"></i></li><li><a href="#" class="up">Swap Back </a><i class="icon-arrow-left icon-white"></i></li><li><a href="#" class="remove">Remove </a><i class="icon-remove icon-white"></i></li></ul></div>');
+      }
+      console.log(photo.get('div_id'));
+      if(photo.get('div_id') == 0){
+        console.log($("a.down"))
+        this.$("a.up").parent().remove();
+      } else if (photo.get('div_id') == 3) {
+        this.$("a.down").parent().remove();
+      }
     });
   },
 

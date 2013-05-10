@@ -1,8 +1,7 @@
 PJ.Routers.JarsRouter = Backbone.Router.extend({
 
-  initialize: function(content, photoContent) {
+  initialize: function(content) {
     this.$contentEl = $(content)
-    this.$photoContentEl = $(photoContent)
   },
 
   routes: {
@@ -18,10 +17,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   show: function(id){
     var that = this;
     var model = PJ.Store.CurrentUserJars.get(id)
-    console.log(model)
     model.get('photos').fetch({
       success: function() {
-        console.log(model.get('photos'));
         var showJarView = new PJ.Views.ShowJarView({
           //the jar object
           model: model,
@@ -31,7 +28,6 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         showJarView.clearTiles();
         that.$contentEl.html(showJarView.render().$el);
         showJarView.updateTiles();
-        // showJarView.disableResize();
       }
     });  
   },
@@ -40,9 +36,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     var that = this;
     var jar = new PJ.Models.Jar({user_id: PJ.Store.CurrentUser.first().get('id')});
     var photos = jar.get('photos')
-    // var tags = new PJ.Collections.Tags(jar.get('tags'));
     var tags = jar.get('tags');
-    console.log(tags);
     var newJarView = new PJ.Views.NewJarView({
       model: jar,
       tags: tags
@@ -64,7 +58,6 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   index: function() {
     var that = this;
     that.$contentEl.empty();
-    console.log(PJ.Store.CurrentUserJars.sort());
     PJ.Store.CurrentUserJars.sort().each(function(jar) {
       var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
@@ -80,7 +73,6 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
             showJarView.clearTiles();
             that.$contentEl.prepend(showJarView.render().$el);
             showJarView.updateTiles();
-            // showJarView.disableResize();
             }
           });
         }
@@ -118,13 +110,10 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     that.$contentEl.empty();
     var taggedJars = new PJ.Collections.Jars();
     PJ.Store.CurrentUserJars.each(function(jar) {
-      console.log(jar.get('tags'))
       if (jar.get('tags').where({name: id}).length > 0) {
-        console.log(jar.get('tags').contains({name: id}))
         taggedJars.add([jar])
       }
     });
-    console.log(that.taggedJars);
     taggedJars.each( function(jar) {
       var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
@@ -140,7 +129,6 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
             showJarView.clearTiles();
             that.$contentEl.prepend(showJarView.render().$el);
             showJarView.updateTiles();
-            // showJarView.disableResize();
             }
           });
         }
@@ -153,7 +141,6 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     var jar =  PJ.Models.Jar.findOrCreate({id: id});
     var photos = jar.get('photos')
     var tags = jar.get('tags');
-    console.log(photos)
     var editPhotosView = new PJ.Views.EditPhotosView({
       model: jar,
       collection: photos

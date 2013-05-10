@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130504182957) do
+ActiveRecord::Schema.define(:version => 20130510070248) do
 
   create_table "jars", :force => true do |t|
     t.integer  "user_id"
@@ -21,13 +21,8 @@ ActiveRecord::Schema.define(:version => 20130504182957) do
   end
 
   create_table "photos", :force => true do |t|
-    t.text     "caption"
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "filepicker_url"
     t.integer  "jar_id"
     t.integer  "div_id"

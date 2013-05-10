@@ -10,7 +10,6 @@ class JarsController < ApplicationController
       format.html {render :index}
       format.json {render :json => @user_jars}
     end
-    #currently only grabs the logged_in user's jars
   end
 
   def create
@@ -33,7 +32,14 @@ class JarsController < ApplicationController
 
   def update
     @jar = Jar.find(params[:id])
-    if (@jar.user == current_user && @jar.update_attributes(params[:jar]))
+    @strippedParams = params[:jar]
+    if @strippedParams[:tags_attributes]
+      @strippedParams[:tags_attributes].each do |tag|
+        tag.delete(:jar_id)
+      end
+    end
+    puts(@strippedParams)
+    if (@jar.user == current_user && @jar.update_attributes(@strippedParams))
       render json: @jar
     else
       render json: @jar.errors, status: 422

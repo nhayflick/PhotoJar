@@ -238,7 +238,7 @@
 .hidden-menu-wide {
   background-color:rgba(0,0,0,0.6);
   opacity:0;
-  width: 422px;
+  width: 430px;
   left: 5px;
   height: 156px;
   bottom: 5px;
@@ -246,8 +246,14 @@
   border-radius: 4px;
 }
 
+.hidden-menu-wide:hover {
+  opacity: 1;
+}
+
 .hidden-menu:hover {
   opacity: 1;
 }
 
 .hidden-menu h4{text-align:center; padding:40px 40px 0; }
+
+.hidden-menu-wide h4{text-align:center; padding:40px 40px 0; }
