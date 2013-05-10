@@ -34,7 +34,7 @@ PJ.Views.NewPhotoView = Backbone.View.extend({
 
   findEmptyDiv: function() {
     var that = this;
-    for(i=0; i < 3; i++) {
+    for(i=0; i < 4; i++) {
       if(!_.contains(that.collection.pluck('div_id'), i)){
         return i
       }
