@@ -39,7 +39,7 @@
 <br>
 <ul>
   <% jar.get('tags').each( function(tag) { %>
-      <li style='list-style-type: none;  display: inline; padding-right: 10px;'><a href="#/tags/<%= tag.escape('name') %>" style='text-decoration: none;'><span class='tag-show'><%= tag.escape('name') + "  "%></span></a></li>
+      <li style='list-style-type: none;  display: inline; padding-right: 10px;'><a href="#/tags/<%= encodeURIComponent(tag.escape('name')) %>" style='text-decoration: none;'><span class='tag-show'><%= tag.escape('name') + "  "%></span></a></li>
   <% }) %>
 </ul>
 <%}%>
