@@ -1,5 +1,7 @@
 PJ.Views.NewPhotoView = Backbone.View.extend({
 
+  //Handles photo submission to the Jar through FilePicker
+
   events: {
     'change input[type="file"]': 'create'
   },

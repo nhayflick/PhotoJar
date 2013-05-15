@@ -55,6 +55,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     newTagView.createTagField();
   },
 
+  //Displays a feed of all current jars
+
   index: function() {
     var that = this;
     that.$contentEl.empty();
@@ -80,6 +82,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     });
   },
 
+  //Displays all the jars created by a particular user
+
   userShow: function(id) {
     var that = this;
     that.$contentEl.empty();
@@ -104,6 +108,8 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
       }
     });
   },
+
+  //Displays all jars matching a particular tag
 
   tagShow: function(id) {
     var that = this;

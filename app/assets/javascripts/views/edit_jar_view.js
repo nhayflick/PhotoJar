@@ -1,5 +1,7 @@
 PJ.Views.EditJarView = Backbone.View.extend({
 
+  //This encapsulates the jar edit module and handles form submission
+
   initialize: function() {
     this.photos = []
   },

@@ -1,5 +1,7 @@
 PJ.Views.ShowJarView = Backbone.View.extend({
 
+  //Shows a single jar with all relevant meta data
+
   render: function() {
     var that = this;
           console.log(that.model);

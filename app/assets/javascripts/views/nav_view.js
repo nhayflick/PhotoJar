@@ -1,5 +1,7 @@
 PJ.Views.NavView = Backbone.View.extend({
 
+  //This initializes the top navigation bar
+
   initialize: function() {
     var that = this;
     renderCallback = that.render.bind(that);

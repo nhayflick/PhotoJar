@@ -1,5 +1,8 @@
 PJ.Views.NewJarView = Backbone.View.extend({
 
+    //Encapsulates the jar creation module and handles form submission
+
+
   initialize: function() {
     this.photos = []
   },

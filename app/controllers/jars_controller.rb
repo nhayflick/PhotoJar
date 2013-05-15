@@ -13,6 +13,7 @@ class JarsController < ApplicationController
   end
 
   def create
+    # Handles cases where the list of tags is empty
     @strippedParams = params[:jar]
     if @strippedParams[:tags_attributes] == nil
       @strippedParams.delete(:tags_attributes)
@@ -35,12 +36,14 @@ class JarsController < ApplicationController
   end
 
   def update
+    # Handles cases where the list of tags is empty
     @jar = Jar.find(params[:id])
     @strippedParams = params[:jar]
     if @strippedParams[:tags_attributes] == nil
       @strippedParams.delete(:tags_attributes)
     end
     puts(@strippedParams)
+    # Authenticates that the current user has permission to edit this jar
     if (@jar.user == current_user && @jar.update_attributes(@strippedParams))
       render json: @jar
     else

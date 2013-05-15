@@ -2,6 +2,8 @@ PJ.Views.ListJarsView = Backbone.View.extend({
   tagName: 'ul',
   className: 'jar_list',
 
+  //This displays and holds a collection of Jar Views
+
   initialize: function(){
     var that = this;
     var renderCallback = that.render.bind(that);

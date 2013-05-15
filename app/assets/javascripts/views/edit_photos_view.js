@@ -1,5 +1,7 @@
 PJ.Views.EditPhotosView = Backbone.View.extend({
 
+  //This displays an individual photojar and allows for moving, styling of individual photo DIVs
+
   events: {
     'click .remove': 'remove',
     'click .expand': 'expand',

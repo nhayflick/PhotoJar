@@ -8,12 +8,13 @@ PJ.Models.Tag = Backbone.RelationalModel.extend({
   //   return attrs;
   // },
 
+  //keeps tags unique
+
   add: function(tag) {
     var isDupe = this.any(function(_tag) { 
         return _tag.get('body') === truck.get('body');
     });
     if (isDupe) {
-        //Up to you either return false or throw an exception or silently ignore
         return false;
     }
     Backbone.Collection.prototype.add.call(this, tag);

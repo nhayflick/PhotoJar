@@ -1,5 +1,7 @@
 PJ.Views.NewTagView = Backbone.View.extend({
 
+  //Handles adding and deleting from the list of tags for an individual jars
+
   render: function() {
     var that = this;
     var renderedContent = JST['tags/new']({
