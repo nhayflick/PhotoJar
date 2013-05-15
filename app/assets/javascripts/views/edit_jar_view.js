@@ -12,10 +12,10 @@ PJ.Views.EditJarView = Backbone.View.extend({
   },
 
   events: {
-    'click button.submit': 'create'
+    'click button.submit': 'update'
   },
 
-  create: function() {
+  update: function() {
     var that = this;
     that.model.save({title: $('#jar_title').val()}, {success: function() {
         PJ.Store.CurrentUserJars.add(that.model);

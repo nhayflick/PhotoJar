@@ -148,13 +148,10 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     var newPhotoView = new PJ.Views.NewPhotoView({
       collection: photos
     });
-    var newTagView = new PJ.Views.NewTagView({
-      collection: tags
-    });
     var editJarView = new PJ.Views.EditJarView({
       model: jar
     });
-    that.$contentEl.html(editPhotosView.render().$el).append(newPhotoView.render().$el).append(newTagView.render().$el).append(editJarView.render().$el);
+    that.$contentEl.html(editPhotosView.render().$el).append(newPhotoView.render().$el).append(editJarView.render().$el);
     newTagView.createTagField();
     editPhotosView.updateTiles();
   }

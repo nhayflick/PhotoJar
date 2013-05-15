@@ -4,6 +4,6 @@ class Tag < ActiveRecord::Base
   has_many :taggings, inverse_of: :tag
   has_many :jars, through: :taggings
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
 end

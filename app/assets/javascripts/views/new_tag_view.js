@@ -27,7 +27,7 @@ PJ.Views.NewTagView = Backbone.View.extend({
     for (var i = $tagsinput.length; i--;) {  
       tags.push($($tagsinput[i]).text().substring(0, $($tagsinput[i]).text().length -  1).trim());  
     }
-    // that.collection.add()
+    console.log(tags)
     that.collection.reset()
     _.each(tags, function(tag) {
       that.collection.add({name: (tag).toLowerCase()})

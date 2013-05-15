@@ -13,7 +13,11 @@ class JarsController < ApplicationController
   end
 
   def create
-    @jar = Jar.new(params[:jar])
+    @strippedParams = params[:jar]
+    if @strippedParams[:tags_attributes] == nil
+      @strippedParams.delete(:tags_attributes)
+    end
+    @jar = Jar.new(@strippedParams)
     if @jar.save
       render json: @jar
     else
@@ -33,10 +37,8 @@ class JarsController < ApplicationController
   def update
     @jar = Jar.find(params[:id])
     @strippedParams = params[:jar]
-    if @strippedParams[:tags_attributes]
-      @strippedParams[:tags_attributes].each do |tag|
-        tag.delete(:jar_id)
-      end
+    if @strippedParams[:tags_attributes] == nil
+      @strippedParams.delete(:tags_attributes)
     end
     puts(@strippedParams)
     if (@jar.user == current_user && @jar.update_attributes(@strippedParams))
