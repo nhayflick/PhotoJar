@@ -26,6 +26,7 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
 <link rel="stylesheet" type="text/css" href="jquery.tagsinput.css" /> -->
 <script>
 
+
 //Google Analytics Package
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -38,6 +39,11 @@ href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.
 
 
   $(function(){
+
+   var v = document.createElement("video");
+    if (v.canPlayType("video/mp4") == '') {
+      window.alert("PhotoJar doesn't support your current browser! More browser-compatibility will be added soon, but in the meantime please use Chrome or Safari.")
+    };
 
     //jQuery plugin for correct display of posting date-time info
 
