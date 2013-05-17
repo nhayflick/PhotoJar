@@ -19,7 +19,8 @@ window.PJ = {
 
   installSidebar: function($sidebar) {
    var jarListView = new PJ.Views.ListJarsView({
-    collection: PJ.Store.CurrentUserJars
+    collection: PJ.Store.CurrentUserJars,
+    model: PJ.Store.CurrentUser
    });
    $(sidebar).html(jarListView.render().$el);
   },

@@ -10,16 +10,21 @@ PJ.Views.ListJarsView = Backbone.View.extend({
     that.collection.on("add", renderCallback);
     that.collection.on("change", renderCallback);
     that.collection.on("remove", renderCallback);
+    that.model.on("remove", renderCallback);
   },
 
   render: function(){
-    console.log("collection changed!")
     var that = this;
+    console.log(that.model);
     var renderedContent = JST['jars/list']({
       jars: that.collection
     });
     that.$el.html(renderedContent);
-    that.$el.append("<a href='/#/jars/new'> Start a New Photo Jar </button>");
+    if (that.model.first() != undefined) {
+      that.$el.append("<a href='/#/jars/new'> Start a New Photo Jar </button>");
+    } else {
+      that.$el.append("<a href='/session/new'> Start a New Photo Jar </button>");
+    }
     return that;
   },
 
