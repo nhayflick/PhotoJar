@@ -4,7 +4,7 @@
   var edit = false;
 }%>
 
-<div  class='palette' style='margin: 20px;'>
+<div  class='palette see-thru' style='margin: 20px;'>
 <% if(!jar.isNew()) {%>
 <b> <a href='#/users/<%=jar.get('user').escape('id')%>'><img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
 <%= jar.get('user').escape('user_name')%> </a><br>

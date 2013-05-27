@@ -265,18 +265,39 @@
   width: 200px;
   top: 0px;
   bottom: 0px;
+  text-align: center;
+  background-color: #ffffff;
 }
 
 .main-space {
-  margin-left: 200px;
+  float: right;
+  min-width: 500px;
+  border-width: 0px;
+  margin-left: 220px;
 }
 
 .jar-content {
-  text-align: right;
+
 }
 
 
 .footer {
   position: absolute;
   bottom: 0;
+  margin-left: 20px;
+}
+
+.see-thru {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
+
+.list-btns {
+  width: 150px;
+  margin-left: 15px;
+}
+
+.nav-li {
+  margin-bottom: 5px;
+  margin-top: 5px;
 }

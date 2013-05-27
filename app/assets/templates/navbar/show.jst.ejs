@@ -1,16 +1,37 @@
-<br>
 <div style='margin: 20px;'>
+ <a href="/#"><h2 style='text-align:center; margin: 20px;'><img alt="Mason_jar_small" src="/assets/Mason_Jar_Small-64e66525238ef7d969ea96c1955504c7.jpg" /> PhotoJar</h2></a>
 <%= console.log(user.first()) %>
+<div>
 <% if(!user.isEmpty()) {%>
-<b> <a href='#/users/<%=user.first().escape('id')%>'><img src="<%=user.first().escape('avatar_url')%>/convert?w=50&h=50&fit=crop" class="rounded-photo"/>
+Logged in as:
+<br>
+<br>
+<b> <a href='#/users/<%=user.first().escape('id')%>'><img src="<%=user.first().escape('avatar_url')%>/convert?w=50&h=50&fit=crop" class="rounded-photo"/><br>
 <%=user.first().escape('user_name')%></b> </a>
 <%}%>
-
-<p align="right"> 
-<% if(!user.isEmpty()) {%>
-<a href="#" id="logout"> Sign Out</a>
-<%}else{%>
-<a href="/session/new" id="login"> Sign In</a>
+<br>
+<br>
+<ul class="nav list-btns">
+<li class="nav-li">
+ <a href="/#" class="btn btn-large btn-block btn-primary"> <i class="icon-home"></i> Home</a>
+</li>
+<li class="nav-li">
+<% if (!user.isEmpty()) { %>
+  <a href='/#/jars/new' class="btn btn-large btn-block btn-primary"> <i class="icon-plus"></i> Create a Jar </a>
+<%} else {%>
+  <a href='/session/new' class="btn btn-large btn-block btn-primary"> <i class="icon-plus"></i> Create a Jar </a>
 <%}%>
-</p>
+</li>
+<li class="nav-li"> 
+<% if(!user.isEmpty()) {%>
+<a href="#" class="btn btn-large btn-block btn-primary" id="logout"> <i class="icon-remove"></i> Sign Out</a>
+<%}else{%>
+<a href="/session/new" class="btn btn-large btn-block btn-primary" id="login"> <i class="icon-user"></i> Sign In</a>
+<%}%>
+</li>
+
+</ul>
+
+</div>
+
 </div>
