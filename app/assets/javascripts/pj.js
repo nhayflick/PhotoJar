@@ -16,14 +16,6 @@ window.PJ = {
     Backbone.history.start();
   },
 
-  installSidebar: function($sidebar) {
-   var jarListView = new PJ.Views.ListJarsView({
-    collection: PJ.Store.CurrentUserJars,
-    model: PJ.Store.CurrentUser
-   });
-   $(sidebar).html(jarListView.render().$el);
-  },
-
   installNavbar: function(navbar) {
     var navView = new PJ.Views.NavView({
       collection: PJ.Store.CurrentUser
