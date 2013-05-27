@@ -257,3 +257,26 @@
 .hidden-menu h4{text-align:center; padding:40px 40px 0; }
 
 .hidden-menu-wide h4{text-align:center; padding:40px 40px 0; }
+
+.sidebar-nav {
+  position: fixed;
+  display:block;
+  float:left;
+  width: 200px;
+  top: 0px;
+  bottom: 0px;
+}
+
+.main-space {
+  margin-left: 200px;
+}
+
+.jar-content {
+  text-align: right;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 0;
+}
