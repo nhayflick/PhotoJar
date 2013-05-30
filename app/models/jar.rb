@@ -14,6 +14,8 @@ class Jar < ActiveRecord::Base
   has_many :photos, inverse_of: :jar
   accepts_nested_attributes_for :photos
 
+  has_many :jar_likes
+
   validates :title, presence: true, uniqueness: {scope: :user_id}
 
   def as_json(options={})
