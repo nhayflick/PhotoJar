@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   attr_accessible :user_name, :email, :password, :password_confirmation, :avatar_url
   has_secure_password
 
-  has_many :jars, :jar_likes
+  has_many :jars
+  has_many :jar_likes
 
   before_save { |user| user.email = email.downcase }
   before_save :create_remember_token

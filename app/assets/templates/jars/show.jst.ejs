@@ -6,9 +6,26 @@
 
 <div  class='palette see-thru' style='margin: 20px;'>
 <% if(!jar.isNew()) {%>
+<% if(!jar.get('jarLikes').findWhere({user_id: PJ.Store.CurrentUser.first().id})) {%>
+<a href="#" class="btn btn-large btn-inverse like"> ♥</a>
+<%} else {%>
+<a href="#" class="btn btn-large btn-danger unlike"> ♥</a>
+<%}%>
+
 <b> <a href='#/users/<%=jar.get('user').escape('id')%>'><img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
 <%= jar.get('user').escape('user_name')%> </a><br>
 <%= jQuery.timeago(jar.escape("created_at"))  %><br>
+<% if (jar.get('jarLikes').length > 0) {%>
+  <b class="heart">♥</b> 
+  <% jar.get('jarLikes').each(function(like, i){ %>
+    <a href="#/users/<%= like.escape('user_id')%>"><%= PJ.Models.User.findOrCreate(like.get('user_id')).get('user_name') %></a>
+    <% if (i < jar.get('jarLikes').length - 1) {%>
+      <%=", "%> 
+    <%}%>
+  <% }) %>
+  <br>
+<% }%>
+
 
 <%if(jar.get('user') == PJ.Store.CurrentUser.first() && !edit) { %>
   <div style="text-align:right;"><i class="icon-edit icon-white"></i><a href="/#/jars/<%=jar.get('id')%>/edit"> Edit</a></div>
@@ -22,7 +39,7 @@
   <label for='jar_title'/>
   <input id='jar_title' name='jar[title]' size='60' type='text' value='<%= jar.escape('title') %>'/>
 <%}else{%>
-  <h3> <%= jar.escape('title') %> </h3>
+  <h3> <%= jar.escape('title') %> </h3>shot
 <%}%>
 
 <ul style='list-style:none; background-color:#FFFFFF; width:440px; margin:auto; border-radius: 4px;' id="photocontent">

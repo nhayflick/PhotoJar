@@ -17,19 +17,15 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   show: function(id){
     var that = this;
     var model = PJ.Store.CurrentUserJars.get(id)
-    model.get('photos').fetch({
-      success: function() {
-        var showJarView = new PJ.Views.ShowJarView({
-          //the jar object
-          model: model,
-          //the jar's photos
-          collection: model.get('photos')
-        })
-        showJarView.clearTiles();
-        that.$contentEl.html(showJarView.render().$el);
-        showJarView.updateTiles();
-      }
-    });  
+    var showJarView = new PJ.Views.ShowJarView({
+      //the jar object
+      model: model,
+      //the jar's photos
+      collection: model.get('photos')
+    })
+    showJarView.clearTiles();
+    that.$contentEl.html(showJarView.render().$el);
+    showJarView.updateTiles();
   },
 
   new: function(){
@@ -64,19 +60,15 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
       var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
         success: function() {
-          jar.get('photos').fetch({
-          success: function() {
-            var showJarView = new PJ.Views.ShowJarView({
-              //the jar object
-              model: jar,
-              //the jar's photos
-              collection: jar.get('photos')
-            })
-            showJarView.clearTiles();
-            that.$contentEl.prepend(showJarView.render().$el);
-            showJarView.updateTiles();
-            }
-          });
+          var showJarView = new PJ.Views.ShowJarView({
+            //the jar object
+            model: jar,
+            //the jar's photos
+            collection: jar.get('photos')
+          })
+          showJarView.clearTiles();
+          that.$contentEl.prepend(showJarView.render().$el);
+          showJarView.updateTiles();
         }
       });  
     });
@@ -91,19 +83,15 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
     user.fetch({
       success: function() {
         user.get('jars').each( function(jar) {
-          jar.get('photos').fetch({
-            success: function() {
-              var showJarView = new PJ.Views.ShowJarView({
-                //the jar object
-                model: jar,
-                //the jar's photos
-                collection: jar.get('photos')
-              })
-              showJarView.clearTiles();
-              that.$contentEl.append(showJarView.render().$el);
-              showJarView.updateTiles();
-            }
-          });  
+          var showJarView = new PJ.Views.ShowJarView({
+            //the jar object
+            model: jar,
+            //the jar's photos
+            collection: jar.get('photos')
+          })
+          showJarView.clearTiles();
+          that.$contentEl.prepend(showJarView.render().$el);
+          showJarView.updateTiles();
         });
       }
     });

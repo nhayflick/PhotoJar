@@ -5,7 +5,7 @@ class JarsController < ApplicationController
   include SessionsHelper
 
   def index
-    @user_jars = Jar.all
+    @user_jars = Jar.all(include: [:photos, :jar_likes])
     respond_to do |format|
       format.html {render :index}
       format.json {render :json => @user_jars}
@@ -52,7 +52,7 @@ class JarsController < ApplicationController
   end
 
   def show
-    @jar = Jar.find(params[:id])
+    @jar = Jar.find(params[:id]).includes([:photos, :jar_likes])
     render json: @jar
   end
 end

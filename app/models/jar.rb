@@ -23,6 +23,7 @@ class Jar < ActiveRecord::Base
     json['photos'] = photos.as_json
     json['tags'] = tags.as_json
     json['user'] = user.as_json
+    json['jarLikes'] = jar_likes.as_json
 
     json
   end
