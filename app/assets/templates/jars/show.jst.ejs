@@ -4,13 +4,22 @@
   var edit = false;
 }%>
 
+<% if( PJ.Store.CurrentUser.length > 0) {
+  var loggedIn = true;
+} else {
+  var loggedIn = false;
+}%>
+
 <div  class='palette see-thru' style='margin: 20px;'>
-<% if(!jar.isNew()) {%>
+<% if(!jar.isNew() && loggedIn) {%>
 <% if(!jar.get('jarLikes').findWhere({user_id: PJ.Store.CurrentUser.first().id})) {%>
 <a href="#" class="btn btn-large btn-inverse like"> ♥</a>
 <%} else {%>
 <a href="#" class="btn btn-large btn-danger unlike"> ♥</a>
 <%}%>
+<%}%>
+
+<% if(!jar.isNew()) {%>
 
 <b> <a href='#/users/<%=jar.get('user').escape('id')%>'><img src="<%=jar.get('user').escape('avatar_url')%>/convert?w=40&h=40&fit=crop" class="rounded-photo"/><br>
 <%= jar.get('user').escape('user_name')%> </a><br>
@@ -28,7 +37,7 @@
 
 
 <%if(jar.get('user') == PJ.Store.CurrentUser.first() && !edit) { %>
-  <div style="text-align:right;"><i class="icon-edit icon-white"></i><a href="/#/jars/<%=jar.get('id')%>/edit"> Edit</a></div>
+  <!--div style="text-align:right;"><i class="icon-edit icon-white"></i><a href="/#/jars/<%=jar.get('id')%>/edit"> Edit</a></div-->
 <%}%>
 <br>
 <%}%>
@@ -39,7 +48,7 @@
   <label for='jar_title'/>
   <input id='jar_title' name='jar[title]' size='60' type='text' value='<%= jar.escape('title') %>'/>
 <%}else{%>
-  <h3> <%= jar.escape('title') %> </h3>shot
+  <h3> <%= jar.escape('title') %> </h3>
 <%}%>
 
 <ul style='list-style:none; background-color:#FFFFFF; width:440px; margin:auto; border-radius: 4px;' id="photocontent">

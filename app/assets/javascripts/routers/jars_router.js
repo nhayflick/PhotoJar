@@ -72,6 +72,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         }
       });  
     });
+    $('.big-header').html('JARS')
   },
 
   //Displays all the jars created by a particular user
@@ -95,6 +96,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         });
       }
     });
+    $('.big-header').html(user.get('user_name').toUpperCase())
   },
 
   //Displays all jars matching a particular tag
@@ -128,6 +130,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
         }
       });
     });
+    $('.big-header').html(id.toUpperCase())
   },
 
   edit: function(id){
