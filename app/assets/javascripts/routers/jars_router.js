@@ -56,6 +56,10 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
   index: function() {
     var that = this;
     that.$contentEl.empty();
+    if(PJ.Store.CurrentUser.isEmpty()){
+      var renderedContent = JST['jars/welcome']()
+      that.$contentEl.append(renderedContent)
+    }
     PJ.Store.CurrentUserJars.sort().each(function(jar) {
       var user = PJ.Models.User.findOrCreate({id: jar.get('user_id')});
       user.fetch({
@@ -67,7 +71,7 @@ PJ.Routers.JarsRouter = Backbone.Router.extend({
             collection: jar.get('photos')
           })
           showJarView.clearTiles();
-          that.$contentEl.prepend(showJarView.render().$el);
+          that.$contentEl.append(showJarView.render().$el);
           showJarView.updateTiles();
         }
       });  

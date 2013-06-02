@@ -25,6 +25,7 @@ PJ.Views.NewTagView = Backbone.View.extend({
   setTagCollection: function() {
     var that = this;
     $tagsinput = that.$("#tagsinput").siblings(".tagsinput").children(".tag");  
+    console.log($tagsinput)
     var tags = [];  
     for (var i = $tagsinput.length; i--;) {  
       tags.push($($tagsinput[i]).text().substring(0, $($tagsinput[i]).text().length -  1).trim());  

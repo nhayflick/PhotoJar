@@ -18,6 +18,8 @@ class JarsController < ApplicationController
     if @strippedParams[:tags_attributes] == nil
       @strippedParams.delete(:tags_attributes)
     end
+        puts @strippedParams
+
     @jar = Jar.new(@strippedParams)
     if @jar.save
       render json: @jar
